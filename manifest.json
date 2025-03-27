@@ -1,7 +1,7 @@
 {
     "name": "Chuck Norris Jokes",
     "short_name": "Jokes",
-    "start_url": "/",
+    "start_url": "/ https://averyv03.github.io/",
     "display": "standalone",
     "background_color": "#ff6600",
     "theme_color": "#ff6600",
