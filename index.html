@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+    <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+   
+     <link rel="manifest" href="./manifest.json">
+     <link rel="stylesheet" href="styles.css">
+    <title>Document</title>
+   
+</head>
+
+<body>
+    <h1>Chuck Norris Jokes</h1>
+    <hr>
+        
+        <br>
+    <div >
+        <p id="joke"></p>
+    
+    </div><hr>
+    
+    <button id="butt">Click for joke</button>
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('./sw.js').then(reg => {
+                console.log('Successfully registered');
+            }).catch(err => {
+                console.log('Error while registering SW')
+            });
+        }
+        </script>
+    <script>
+        var button = document.getElementById("butt")
+        var joke_p = document.getElementById("joke")
+        button.addEventListener('click', function () {
+            var request = new XMLHttpRequest
+            if (request.readyState == 4) {
+                    //the request is completed, now check its status
+                    if (request.status == 200) {
+                        //json text is converted to object
+                      
+                    }
+                    else {
+                        console.log("Status error: " + request.status);
+                    }
+                }
+                else {
+                    console.log("Ignored readyState: " + request.readyState);
+                }
+            request.open("GET", "https://api.chucknorris.io/jokes/random")
+            request.onload = function () {
+                var response = JSON.parse(request.responseText)
+                showjoke(response)
+                console.log(response)
+            }
+            request.send()
+        })
+        function showjoke(response) {
+            var joke = response
+            joke_p.innerHTML = joke.value
+        }
+    </script>
+</body>
+
+</html>
